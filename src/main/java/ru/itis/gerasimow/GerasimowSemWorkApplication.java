@@ -1,0 +1,13 @@
+package ru.itis.gerasimow;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class GerasimowSemWorkApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(GerasimowSemWorkApplication.class, args);
+	}
+
+}

@@ -645,7 +645,7 @@ textarea{
   ==================================================*/
 
 #site-facts{
-	background: radial-gradient(rgba(0, 0, 0, 0.7) 40%, rgb(0, 0, 0) 100%), url("http://placehold.it/1920x1280") fixed no-repeat;
+	background: radial-gradient(rgba(0, 0, 0, 0.7) 40%, rgb(0, 0, 0) 100%)fixed no-repeat;
 	background-size: cover;
 	height: 500px !important;
 	text-align: center;
@@ -743,7 +743,7 @@ textarea{
   ==================================================*/  
 
 #lp-register{
-  background: linear-gradient(to right, rgb(162, 248, 125), rgb(21, 120, 4)), url("http://placehold.it/1920x1280") fixed no-repeat;
+  background: linear-gradient(to right, rgb(162, 248, 125), rgb(21, 120, 4)) fixed no-repeat;
   background-size: cover;
   background-position: center;
   position: absolute;
@@ -945,7 +945,7 @@ textarea{
 /*Profile Card CSS*/
 
 .profile-card{
-  background: linear-gradient(to bottom, rgb(162, 248, 125), rgb(21, 120, 4)), url("http://placehold.it/1030x430") no-repeat;
+  background: linear-gradient(to bottom, rgb(162, 248, 125), rgb(21, 120, 4)) no-repeat;
   background-size: cover;
   width: 100%;
   min-height: 90px;
@@ -1460,7 +1460,7 @@ ul.online-users li span.online-dot{
   ==================================================*/
 
 .timeline-cover{
-  background: url("http://placehold.it/1030x360") no-repeat;
+  background: no-repeat;
   background-position: center;
   background-size: cover;
   min-height: 360px;

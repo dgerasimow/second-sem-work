@@ -11,7 +11,7 @@ $(document).ready(function ()
         }
 
         $.post(
-            "/register",
+            "/registration",
             registerData,
             func,
             "json"

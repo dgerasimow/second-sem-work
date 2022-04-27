@@ -13,12 +13,12 @@
             ================================================= -->
             <div class="col-md-3 static">
                 <div class="profile-card">
-                    <img src="http://placehold.it/300x300" alt="user" class="profile-photo" />
-                    <h5><a href="/profile?id=${user.id}" class="text-white">${user.firstName} ${user.secondName}</a></h5>
+                    <img src="/images/bogdanov-s-telefonom.jpg" alt="user" class="profile-photo" />
+                    <h5><a href="/profile/${user.id}" class="text-white">${user.firstName} ${user.secondName}</a></h5>
                     <a href="/subs" class="text-white"><i class="ion ion-android-person-add"></i> подписчики</a>
                 </div><!--profile card ends-->
                 <ul class="nav-news-feed">
-                    <li><i class="icon ion-ios-paper"></i><div><a href="/profile?id=${user.id}">Мой профиль</a></div></li>
+                    <li><i class="icon ion-ios-paper"></i><div><a href="/profile/${user.id}">Мой профиль</a></div></li>
                 </ul><!--news-feed links ends-->
             </div>
             </#if>

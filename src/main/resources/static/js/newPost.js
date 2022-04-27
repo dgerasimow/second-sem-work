@@ -4,7 +4,7 @@ $(document).ready(function ()
     {
         console.log($("#post-textarea").val())
         var newPostData = {
-            postText: $("#post-textarea").val(),
+            text: $("#post-textarea").val(),
             currentUserId: $("#userId").val(),
         }
 
@@ -18,17 +18,15 @@ $(document).ready(function ()
        function func(responseData)
        {
            console.log(responseData)
-           if (responseData.success) {
 
                $("#post").append(
                    '<div class="post-content">' +
-                   '<img src="http://placehold.it/1920x1280" alt="post-image" class="img-responsive post-image"/>' +
                    '<div class="post-container">' +
-                   '<img src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />' +
+                   '<img src="/images/bogdanov-s-telefonom.jpg" alt="user" class="profile-photo-md pull-left" />' +
                    '<div class="post-detail">' +
                    '<div class="user-info">' +
-                   '<h5><a href="timeline.html" class="profile-link">' + responseData.first_name +' '+ responseData.second_name + '</a> <span class="following">following</span></h5>' +
-                   '<p class="text-muted">' + responseData.creation_time + '</p>' +
+                   '<h5><a href="timeline.html" class="profile-link">' + responseData.firstName +' '+ responseData.lastName + '</a> <span class="following">following</span></h5>' +
+                   '<p class="text-muted">' + responseData.date + '</p>' +
                    '</div>' +
                    '<div class="reaction">' +
                    '<a class="btn text-green"><i class="icon ion-thumbsup"></i> 13</a>' +
@@ -36,7 +34,7 @@ $(document).ready(function ()
                    '</div>' +
                    '<div class="line-divider"></div>' +
                    '<div class="post-text">' +
-                   '<p>' + responseData.post_text + '</p>' +
+                   '<p>' + responseData.text + '</p>' +
                    '</div>' +
                    '<div class="line-divider"></div>' +
                    '</div>' +
@@ -44,7 +42,6 @@ $(document).ready(function ()
                    '</div>'
                )
            }
-       }
        event.preventDefault();
     });
 });

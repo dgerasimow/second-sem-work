@@ -4,15 +4,23 @@
 
     <title><@title></@title></title>
 
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/static/css/style.css" />
-    <link rel="stylesheet" href="/static/css/ionicons.min.css" />
-    <link rel="stylesheet" href="/static/css/font-awesome.min.css" />
-    <link href="/static/css/emoji.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/ionicons.min.css" />
+    <link rel="stylesheet" href="/css/font-awesome.min.css" />
+    <link href="/css/emoji.css" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i" rel="stylesheet">
 
-    <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
+    <link rel="shortcut icon" type="image/png" href="/images/fav.png"/>
+
+    <style>
+        .center {
+            margin: auto;
+            width: 60%;
+            padding: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -28,7 +36,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/login"><img src="images/logo.png" alt="logo" /></a>
+                <a class="navbar-brand" href="/login"><img src="/images/logo.png" alt="logo" /></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -37,10 +45,12 @@
                     <li class="dropdown">
                         <a href="/posts">Посты</a>
                     </li>
-                    <li class="dropdown">
-                        <a href="/profile?id=${currentUserId}">Мой профиль</a>
-                    </li>
-                    <li class="dropdown"><a href="/logout">Выйти</a></li>
+                    <#if user??>
+                        <li class="dropdown">
+                            <a href="/profile/${user.id}">Мой профиль</a>
+                        </li>
+                        <li class="dropdown"><a href="/logout">Выйти</a></li>
+                    </#if>
                 </ul>
                 <form class="navbar-form navbar-right hidden-sm">
                     <div class="form-group">
@@ -54,7 +64,7 @@
 </header>
 <!--Header End-->
 
-<div class="content1">
+<div class="center" >
     <div class="content"><@content></@content></div>
 </div>
 
@@ -79,13 +89,13 @@
 
 <!-- Scripts
 ================================================= -->
-<script src="js/jquery-3.1.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.sticky-kit.min.js"></script>
-<script src="js/jquery.scrollbar.min.js"></script>
-<script src="js/script.js"></script>
-<script src="js/newPost.js"></script>
-<script src="js/newComment.js"></script>
+<script src="/js/jquery-3.1.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.sticky-kit.min.js"></script>
+<script src="/js/jquery.scrollbar.min.js"></script>
+<script src="/js/script.js"></script>
+<script src="/js/newPost.js"></script>
+<script src="/js/newComment.js"></script>
 
 </body>
 

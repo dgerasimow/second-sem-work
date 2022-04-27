@@ -27,6 +27,8 @@ public class PostDto {
 
 	private Integer userId;
 
+	private List<CommentDto> comments;
+
 	public static PostDto from(Post post) {
 		return PostDto.builder()
 				.userId(post.getAccount().getId())
@@ -35,6 +37,7 @@ public class PostDto {
 				.date(post.getDate())
 				.firstName(post.getAccount().getFirstName())
 				.lastName(post.getAccount().getLastName())
+				.comments(CommentDto.from(post.getComments().stream().toList()))
 				.build();
 	}
 

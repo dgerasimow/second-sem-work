@@ -1,26 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <#include "base.ftl">
-<#--<head>-->
-<#--    <script>-->
-<#--        $("create-post-form").submit(function (e) {-->
-<#--            e.preventDefault();-->
-
-<#--            var form = $(this);-->
-<#--            var url = form.attr('action')-->
-
-<#--            $.ajax({-->
-<#--                type: "POST",-->
-<#--                url: url,-->
-<#--                data: form.serialize(),-->
-<#--                success: function(data)-->
-<#--                {-->
-<#--                    alert(data);-->
-<#--                }-->
-<#--            });-->
-<#--        });-->
-<#--    </script>-->
-<#--</head>-->
 <#macro title>My profile</#macro>
 <body>
 <#macro content>
@@ -87,11 +67,12 @@
                     <#if posts?has_content>
                         <#list posts as p>
                     <div class="post-content">
+                        <img src="/images/img.png" alt="post-image" class="img-responsive post-image" />
                         <div class="post-container">
                             <img src="/images/bogdanov-s-telefonom.jpg" alt="user" class="profile-photo-md pull-left" />
                             <div class="post-detail">
                                 <div class="user-info">
-                                    <h5><a href="timeline.html" class="profile-link">${user.firstName} ${user.lastName}</a> <span class="following">following</span></h5>
+                                    <h5><a href="/profile/${p.userId}" class="profile-link">${user.firstName} ${user.lastName}</a> <span class="following">following</span></h5>
                                     <p class="text-muted">${p.date}</p>
                                 </div>
                                 <div class="reaction">
@@ -102,24 +83,24 @@
                                 <div class="post-text">
                                     <p>${p.text}</p>
                                 </div>
-<#--                                <div class="line-divider"></div>-->
-<#--                                <#list c as comment>-->
-<#--                                <div class="post-comment">-->
-<#--                                    <img src="" alt="" class="profile-photo-sm" />-->
-<#--                                    <p><a href="timeline.html" class="profile-link">${comment.userFirstName} </a>${comment.comment_text}</p>-->
-<#--                                </div>-->
-<#--                                    <div class="line-divider"></div>-->
-<#--                                </#list>-->
-<#--                                <div id="last-divider"></div>-->
-<#--                                <form method="POST" id="add-new-comment">-->
-<#--                                <div class="post-comment">-->
-<#--                                    <img src="" alt="" class="profile-photo-sm" />-->
-<#--                                    <input type="hidden" id="post-id" value="${p.id}">-->
-<#--                                    <input type="hidden" id="user-id" value="${user.id}">-->
-<#--                                    <input type="text" id="comment-text" name="comment-text" class="form-control" placeholder="Post a comment">-->
-<#--                                    <input type="submit" class="btn btn-primary pull-right" value="Написать">-->
-<#--                                </div>-->
-<#--                                </form>-->
+                                <div class="line-divider"></div>
+                                <#list p.comments as comment>
+                                <div class="post-comment">
+                                    <img src="/images/bogdanov-s-telefonom.jpg" alt="" class="profile-photo-sm" />
+                                    <p><a href="/profile/${comment.userId}" class="profile-link">${comment.userFirstName} </a>${comment.text}</p>
+                                </div>
+                                    <div class="line-divider"></div>
+                                </#list>
+                                <div id="last-divider"></div>
+                                <form method="POST" id="add-new-comment">
+                                <div class="post-comment">
+                                    <img src="/images/bogdanov-s-telefonom.jpg" alt="" class="profile-photo-sm" />
+                                    <input type="hidden" id="post-id" value="${p.id}">
+                                    <input type="hidden" id="user-id" value="${user.id}">
+                                    <input type="text" id="comment-text" name="comment-text" class="form-control" placeholder="Post a comment">
+                                    <input type="submit" class="btn btn-primary pull-right" value="Написать">
+                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>

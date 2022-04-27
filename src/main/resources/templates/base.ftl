@@ -47,7 +47,7 @@
                     </li>
                     <#if user??>
                         <li class="dropdown">
-                            <a href="/profile/${user.id}">Мой профиль</a>
+                            <a href="/profile">Мой профиль</a>
                         </li>
                         <li class="dropdown"><a href="/logout">Выйти</a></li>
                     </#if>

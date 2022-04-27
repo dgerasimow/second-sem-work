@@ -32,6 +32,10 @@ public class Account {
 	@ToString.Exclude
 	private Set<Post> posts;
 
+	@OneToMany(mappedBy = "account")
+	@ToString.Exclude
+	private Set<Comment> comments;
+
 	public enum Role {
 		USER
 	}

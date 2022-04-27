@@ -51,6 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/registration").permitAll()
 				.antMatchers("/login").permitAll()
 				.antMatchers("/profile").authenticated()
+				.antMatchers("/posts").authenticated()
 				.antMatchers("/").permitAll()
 				.and()
 				.formLogin()

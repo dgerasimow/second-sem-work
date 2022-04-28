@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface AccountService {
 	Optional<AccountDto> register(RegistrationDto form);
+	AccountDto getAccountById(Integer id);
 }

@@ -35,4 +35,9 @@ public class AccountServiceImpl implements AccountService{
 
 		return Optional.of(AccountDto.from(accountRepository.save(newAccount)));
 	}
+
+	@Override
+	public AccountDto getAccountById(Integer id) {
+		return AccountDto.from(accountRepository.getById(id));
+	}
 }

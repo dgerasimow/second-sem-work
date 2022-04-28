@@ -9,6 +9,7 @@ import ru.itis.gerasimow.repositories.AccountRepository;
 import ru.itis.gerasimow.repositories.PostRepository;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -27,6 +28,7 @@ public class PostServiceImpl implements PostService{
 				.date(LocalDateTime.now())
 				.text(text)
 				.account(account)
+				.comments(Collections.emptySet())
 				.build();
 
 		account.getPosts().add(newPost);

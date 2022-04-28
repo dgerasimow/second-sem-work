@@ -34,7 +34,7 @@
 
                                     <div class="post-detail">
                                     <div class="user-info">
-                                    <h5>${p.firstName}</h5>
+                                        <h5><a href="/profile/${p.userId}">${p.firstName}</a></h5>
                                     <p class="text-muted">Опубликовал в ${p.date}</p>
                                 </div>
                                     <div class="line-divider"></div>

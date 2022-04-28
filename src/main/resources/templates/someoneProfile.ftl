@@ -5,7 +5,50 @@
 <body>
 <#macro content>
 <div class="container">
+    <script>
+        function subscribe (userId, currentUserId) {
+            let request = new XMLHttpRequest()
 
+            request.open("POST","/subscription")
+
+            let body = {
+                "userItself":userId,
+                "userToSubscribe":currentUserId
+            }
+            request.setRequestHeader('Content-Type', 'application/json')
+            request.send(JSON.stringify(body))
+
+            document.getElementById("sub box").innerHTML = "<input type='hidden' name='userId' id='userId' value=${profileUser.id}>" +
+            "<input type='hidden' name='currentUserId' id='currentUserId' value=${user.id}>" +
+                "<button type='submit' class='btn-primary'  onclick='unsubscribe(${user.id}, ${profileUser.id})'>" +
+                "отписаться</button>"
+
+            document.getElementById("amountOfSubs").innerHTML =
+                (parseInt(document.getElementById("amountOfSubs").innerHTML.valueOf())) + 1
+        }
+    </script>
+    <script>
+        function unsubscribe (userId, currentUserId) {
+            let request = new XMLHttpRequest()
+
+            request.open("POST","/subscription/unsubscribe")
+
+            let body = {
+                "userItself":userId,
+                "userToSubscribe":currentUserId
+            }
+            request.setRequestHeader('Content-Type', 'application/json')
+            request.send(JSON.stringify(body))
+
+            document.getElementById("sub box").innerHTML = "<input type='hidden' name='userId' id='userId' value=${profileUser.id}>" +
+                "<input type='hidden' name='currentUserId' id='currentUserId' value=${user.id}>" +
+                "<button type='submit' class='btn-primary'  onclick='subscribe(${user.id}, ${profileUser.id})'>" +
+                "подписаться</button>"
+
+            document.getElementById("amountOfSubs").innerHTML =
+                (parseInt(document.getElementById("amountOfSubs").innerHTML.valueOf())) - 1
+        }
+    </script>
     <!-- Timeline
     ================================================= -->
     <#if profileUser??>
@@ -24,15 +67,30 @@
                     </div>
                     <div class="col-md-9">
                         <ul class="list-inline profile-menu">
-                            <li>Не подписан</li>
+                            <#if userSubscribedToCurrentUser??>
+                                <li>Подписан</li>
+                            <#else>
+                                    <li>Не подписан</li>
+                            </#if>
                         </ul>
                         <ul class="follow-me list-inline">
-                            <li>1299 подписчиков</li>
-                            <li><form action="/subscribe" method="POST">
-                                    <input type="hidden" name="user" value=${profileUser.id}>
-                                    <input type="hidden" name="currentUserId" value=${user.id}>
-                                    <input type="submit" class="btn-primary" value="Подписаться">
-                                </form></li>
+                            <li id="amountOfSubs">${amountOfSubs}</li>
+                            <li>подписчиков</li>
+                            <#if subscribed??>
+                                <li id="sub box">
+                                    <input type="hidden" name="userId" id="userId" value=${profileUser.id}>
+                                    <input type="hidden" name="currentUserId" id="currentUserId" value=${user.id}>
+                                    <button type="submit" class="btn-primary"  onclick="unsubscribe(${user.id}, ${profileUser.id})">
+                                        Отписаться</button>
+                                </li>
+                                <#else>
+                                <li id="sub box">
+                                    <input type="hidden" name="userId" id="userId" value=${profileUser.id}>
+                                    <input type="hidden" name="currentUserId" id="currentUserId" value=${user.id}>
+                                    <button type="submit" class="btn-primary"  onclick="subscribe(${user.id}, ${profileUser.id})">
+                                        Подписаться</button>
+                                </li>
+                            </#if>
                         </ul>
                     </div>
                 </div>

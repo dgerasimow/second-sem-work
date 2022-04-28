@@ -1,26 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <#include "base.ftl">
-<#--<head>-->
-<#--    <script>-->
-<#--        $("create-post-form").submit(function (e) {-->
-<#--            e.preventDefault();-->
-
-<#--            var form = $(this);-->
-<#--            var url = form.attr('action')-->
-
-<#--            $.ajax({-->
-<#--                type: "POST",-->
-<#--                url: url,-->
-<#--                data: form.serialize(),-->
-<#--                success: function(data)-->
-<#--                {-->
-<#--                    alert(data);-->
-<#--                }-->
-<#--            });-->
-<#--        });-->
-<#--    </script>-->
-<#--</head>-->
 <#macro title>My profile</#macro>
 <body>
 <#macro content>
@@ -37,15 +17,15 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="profile-info">
-                            <img src="http://placehold.it/300x300" alt="" class="img-responsive profile-photo" />
-                            <h3>${user.firstName} ${user.secondName}</h3>
+                            <img src="/images/bogdanov-s-telefonom.jpg" alt="" class="img-responsive profile-photo" />
+                            <h3>${user.firstName} ${user.lastName}</h3>
                             <p class="text-muted">Хуйлан че</p>
                         </div>
                     </div>
                     <div class="col-md-9">
                         <ul class="list-inline profile-menu">
-                            <li><a href="/profile?id=${user.id}">Мои посты</a></li>
-                            <li><a href="/subs" class="active">Мои подписки</a></li>
+                            <li><a href="/profile/${user.id}">Мои посты</a></li>
+                            <li><a href="/subscriptions" class="active">Мои подписки</a></li>
                         </ul>
                         <ul class="follow-me list-inline">
                         </ul>
@@ -60,21 +40,23 @@
                 <div class="col-md-7">
                     <div class="friend-list">
                         <div class="row">
-                            <#if subs??>
+                            <#if subs?has_content>
                                 <#list subs as s>
                                     <div class="col-md-6 col-sm-6">
                                         <div class="friend-card">
-                                            <img src="http://placehold.it/1030x360" alt="profile-cover" class="img-responsive cover" />
+                                            <img src="/images/bogdanov-s-telefonom.jpg" alt="profile-cover" class="img-responsive cover" />
                                             <div class="card-info">
-                                                <img src="http://placehold.it/300x300" alt="user" class="profile-photo-lg" />
+                                                <img src="/images/bogdanov-s-telefonom.jpg" alt="user" class="profile-photo-lg" />
                                                 <div class="friend-info">
-                                                    <h5><a href="/profile?id=${s.id}" class="profile-link">${s.firstName} ${s.secondName}</a></h5>
+                                                    <h5><a href="/profile/${s.id}" class="profile-link">${s.firstName} ${s.lastName}</a></h5>
                                                     <p>твоя подписка</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </#list>
+                                <#else>
+                                    <h3>Нет подписок</h3>
                             </#if>
                         </div>
                     </div>

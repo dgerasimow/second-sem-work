@@ -25,10 +25,10 @@
                     <div class="col-md-9">
                         <ul class="list-inline profile-menu">
                             <li><a href="/profile/${user.id}" class="active">Мои посты</a></li>
-                            <li><a href="/subs">Мои подписки</a></li>
+                            <li><a href="/subscriptions">Мои подписки</a></li>
                         </ul>
                         <ul class="follow-me list-inline">
-                            <li>1299 подписчиков</li>
+                            <li>${amountOfSubs} подписчиков</li>
                         </ul>
                     </div>
                 </div>

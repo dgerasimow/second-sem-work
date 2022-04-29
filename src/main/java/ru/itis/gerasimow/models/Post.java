@@ -33,6 +33,10 @@ public class Post {
 	@ToString.Exclude
 	private Set<Comment> comments;
 
+	@ToString.Exclude
+	@OneToMany(mappedBy = "post")
+	private Set<Like> likes;
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.itis.gerasimow.dto.AccountDto;
 import ru.itis.gerasimow.dto.SubscriptionDto;
 import ru.itis.gerasimow.services.AccountService;
+import ru.itis.gerasimow.services.LikeService;
 import ru.itis.gerasimow.services.PostService;
 import ru.itis.gerasimow.services.SubscriptionService;
 
@@ -26,6 +27,8 @@ public class ProfileController {
 	private final AccountService accountService;
 
 	private final SubscriptionService subscriptionService;
+
+	private final LikeService likeService;
 
 	@GetMapping
 	public String getProfilePage(Model model, HttpSession session) {
@@ -57,6 +60,7 @@ public class ProfileController {
 		long amountOfSubs = subscriptionService.getSubscriptionsByUserToSubscribeId(profileId).size();
 
 		model.addAttribute("amountOfSubs", amountOfSubs);
+
 
 		model.addAttribute("posts", postService.getAllByUserId(profileId));
 		model.addAttribute("profileUser", accountService.getAccountById(profileId));

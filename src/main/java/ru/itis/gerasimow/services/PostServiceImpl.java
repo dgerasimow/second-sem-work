@@ -29,6 +29,7 @@ public class PostServiceImpl implements PostService{
 				.text(text)
 				.account(account)
 				.comments(Collections.emptySet())
+				.likes(Collections.emptySet())
 				.build();
 
 		account.getPosts().add(newPost);

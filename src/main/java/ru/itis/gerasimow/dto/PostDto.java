@@ -29,6 +29,10 @@ public class PostDto {
 
 	private List<CommentDto> comments;
 
+	private List<LikeDto> likes;
+
+	private Boolean isLiked;
+
 	public static PostDto from(Post post) {
 		return PostDto.builder()
 				.userId(post.getAccount().getId())
@@ -38,6 +42,7 @@ public class PostDto {
 				.firstName(post.getAccount().getFirstName())
 				.lastName(post.getAccount().getLastName())
 				.comments(CommentDto.from(post.getComments().stream().toList()))
+				.likes(LikeDto.from(post.getLikes().stream().toList()))
 				.build();
 	}
 

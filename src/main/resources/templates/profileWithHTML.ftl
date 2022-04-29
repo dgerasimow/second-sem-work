@@ -6,6 +6,48 @@
 <#macro content>
 <div class="container">
 
+    <script>
+        function like(userId, postId, likes) {
+            let request = new XMLHttpRequest()
+
+            request.open("POST", "/like")
+
+            request.setRequestHeader("Content-Type", "application/json")
+
+            let body = {
+                "userId":userId,
+                "postId":postId
+            }
+
+            request.send(JSON.stringify(body))
+
+            document.getElementById("reaction" + postId).innerHTML = "<a class='btn text-green' onclick='dislike(" + userId + "," +
+                " " + postId + "," + (likes + 1) + ")'>" +
+                "<i class='icon ion-thumbsup'></i><div id='amountOfLikes" + postId + "'>" + likes + "</div></a>"
+            document.getElementById("amountOfLikes" + postId).innerHTML = likes + 1
+        }
+
+        function dislike(userId, postId, likes) {
+            let request = new XMLHttpRequest()
+
+            request.open("POST", "/dislike")
+
+            request.setRequestHeader("Content-Type", "application/json")
+
+            let body = {
+                "userId":userId,
+                "postId":postId
+            }
+
+            request.send(JSON.stringify(body))
+
+            document.getElementById("reaction" + postId).innerHTML = "<a class='btn text-green' onclick='like(" + userId + "," +
+                " " + postId + "," + (likes - 1) + ")'>" +
+                "<i class='icon ion-thumbsup'></i><div id='amountOfLikes" + postId + "'>" + likes + "</div></a>"
+            document.getElementById("amountOfLikes" + postId).innerText = (parseInt(likes) - 1).toString()
+        }
+    </script>
+
     <!-- Timeline
     ================================================= -->
     <#if user??>
@@ -75,9 +117,9 @@
                                     <h5><a href="/profile/${p.userId}" class="profile-link">${user.firstName} ${user.lastName}</a> <span class="following">following</span></h5>
                                     <p class="text-muted">${p.date}</p>
                                 </div>
-                                <div class="reaction">
-                                    <a class="btn text-green"><i class="icon ion-thumbsup"></i> 13</a>
-                                    <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>
+                                <div class="reaction" id="reaction${p.id}">
+                                    <#assign amount = p.likes?size>
+                                    <a class="btn text-green" onclick="like(${user.id}, ${p.id}, ${amount})"><i class="icon ion-thumbsup"></i><div id="amountOfLikes${p.id}">${amount}</div></a>
                                 </div>
                                 <div class="line-divider"></div>
                                 <div class="post-text">

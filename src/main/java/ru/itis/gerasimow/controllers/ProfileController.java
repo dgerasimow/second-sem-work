@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.itis.gerasimow.dto.AccountDto;
+import ru.itis.gerasimow.dto.LikeDto;
+import ru.itis.gerasimow.dto.PostDto;
 import ru.itis.gerasimow.dto.SubscriptionDto;
 import ru.itis.gerasimow.services.AccountService;
 import ru.itis.gerasimow.services.LikeService;
@@ -16,6 +18,8 @@ import ru.itis.gerasimow.services.SubscriptionService;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/profile")
@@ -33,7 +37,17 @@ public class ProfileController {
 	@GetMapping
 	public String getProfilePage(Model model, HttpSession session) {
 		AccountDto user = (AccountDto) session.getAttribute("user");
-		model.addAttribute("posts", postService.getAllByUserId(user.getId()));
+
+		List<PostDto> posts = postService.getAllByUserId(user.getId()).stream()
+				.peek(postDto -> {
+					Optional<LikeDto> like = likeService.getAllByPostId(postDto.getId()).stream()
+							.filter(likeDto -> likeDto.getPostId().equals(postDto.getId()))
+							.findAny();
+
+					postDto.setIsLiked(like.isPresent());
+				}).collect(Collectors.toList());
+
+		model.addAttribute("posts", posts);
 
 		long amountOfSubs = subscriptionService.getSubscriptionsByUserToSubscribeId(user.getId()).size();
 
@@ -61,8 +75,16 @@ public class ProfileController {
 
 		model.addAttribute("amountOfSubs", amountOfSubs);
 
+		List<PostDto> posts = postService.getAllByUserId(profileId).stream()
+				.peek(postDto -> {
+					Optional<LikeDto> like = likeService.getAllByPostId(postDto.getId()).stream()
+							.filter(likeDto -> likeDto.getPostId().equals(postDto.getId()))
+							.findAny();
 
-		model.addAttribute("posts", postService.getAllByUserId(profileId));
+					postDto.setIsLiked(like.isPresent());
+				}).collect(Collectors.toList());
+
+		model.addAttribute("posts", posts);
 		model.addAttribute("profileUser", accountService.getAccountById(profileId));
 		return "someoneProfile";
 	}

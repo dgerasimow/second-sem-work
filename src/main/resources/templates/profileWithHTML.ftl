@@ -119,7 +119,11 @@
                                 </div>
                                 <div class="reaction" id="reaction${p.id}">
                                     <#assign amount = p.likes?size>
-                                    <a class="btn text-green" onclick="like(${user.id}, ${p.id}, ${amount})"><i class="icon ion-thumbsup"></i><div id="amountOfLikes${p.id}">${amount}</div></a>
+                                    <#if p.isLiked>
+                                        <a class="btn text-green" onclick="dislike(${user.id}, ${p.id}, ${amount})"><i class="icon ion-thumbsup"></i><div id="amountOfLikes${p.id}">${amount}</div></a>
+                                    <#else>
+                                        <a class="btn text-green" onclick="like(${user.id}, ${p.id}, ${amount})"><i class="icon ion-thumbsup"></i><div id="amountOfLikes${p.id}">${amount}</div></a>
+                                    </#if>
                                 </div>
                                 <div class="line-divider"></div>
                                 <div class="post-text">

@@ -3,7 +3,7 @@ $(document).ready(function(){
     {
         $(".error").remove();
         var loginData = {
-            login: $("#login-login").val(),
+            email: $("#login-login").val(),
             password: $("#password-password").val(),
         };
 
@@ -16,24 +16,10 @@ $(document).ready(function(){
 
         function func(responseData)
         {
-            console.log(responseData);
-            if (!responseData.success) {
-                if(responseData.errors.loginEmpty) {
+            if (responseData === "Логин или пароль неверны")
                     $("#login-from-login-form").append(
-                        '<div class="error">' + responseData.errors.loginEmpty + '</div>'
+                        '<div class="error">' + "Логин или пароль неверны" + '</div>'
                     )
-                } if(responseData.errors.passwordEmpty) {
-                    $("#password-from-login-form").append(
-                        '<div class="error">' + responseData.errors.passwordEmpty + '</div>'
-                    )
-                } if(responseData.errors.passwordRegexp) {
-                    $("#password-from-login-form").append(
-                        '<div class="error">' + responseData.errors.passwordRegexp + '</div>'
-                    )
-                }
-            } else {
-                window.location.href = "/profile?id=" + responseData.loggedUserId;
-            }
         }
         event.preventDefault();
     });

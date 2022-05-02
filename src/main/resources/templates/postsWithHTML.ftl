@@ -59,7 +59,7 @@
                 <div class="profile-card">
                     <img src="/images/bogdanov-s-telefonom.jpg" alt="user" class="profile-photo" />
                     <h5><a href="/profile" class="text-white">${user.firstName} ${user.lastName}</a></h5>
-                    <a href="/subs" class="text-white"><i class="ion ion-android-person-add"></i> подписчики</a>
+                    <a href="/subscriptions" class="text-white"><i class="ion ion-android-person-add"></i> подписчики</a>
                 </div><!--profile card ends-->
             </div>
             </#if>
@@ -80,7 +80,11 @@
                                 </div>
                                         <div class="reaction" id="reaction${p.id}">
                                             <#assign amount = p.likes?size>
-                                            <a class="btn text-green" onclick="like(${user.id}, ${p.id}, ${amount})"><i class="icon ion-thumbsup"></i><div id="amountOfLikes${p.id}">${amount}</div></a>
+                                            <#if p.isLiked>
+                                                <a class="btn text-green" onclick="dislike(${user.id}, ${p.id}, ${amount})"><i class="icon ion-thumbsup"></i><div id="amountOfLikes${p.id}">${amount}</div></a>
+                                            <#else>
+                                                <a class="btn text-green" onclick="like(${user.id}, ${p.id}, ${amount})"><i class="icon ion-thumbsup"></i><div id="amountOfLikes${p.id}">${amount}</div></a>
+                                            </#if>
                                         </div>
                                     <div class="line-divider"></div>
                                     <div class="post-text">

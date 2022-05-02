@@ -1,18 +1,20 @@
 $(document).ready(function ()
 {
-    $('#register').submit( function(event)
+    $('#registration').submit( function(event)
     {
         $('.error').remove();
         var registerData = {
             firstName: $("#firstname").val(),
-            secondName: $("#lastname").val(),
-            login: $("#register-login").val(),
+            lastName: $("#lastname").val(),
+            email: $("#register-login").val(),
             password: $("#register-password").val()
         }
 
+        //$.contentType("application/json");
+
         $.post(
-            "/registration",
-            registerData,
+            "/registration/validation",
+            JSON.stringify(registerData),
             func,
             "json"
         );
@@ -21,33 +23,33 @@ $(document).ready(function ()
         {
             console.log(responseData);
             if (!responseData.success) {
-                if(responseData.errors.firstNameEmpty) {
+                if(responseData.errors.errors.firstNameEmpty) {
                     $("#firstName-from-register-form").append(
-                        '<div class="error">' + responseData.errors.firstNameEmpty + '</div>'
+                        '<div class="error">' + responseData.errors.errors.firstNameEmpty + '</div>'
                     )
                 }
-                if(responseData.errors.secondNameEmpty) {
+                if(responseData.errors.errors.secondNameEmpty) {
                     $("#secondName-from-register-form").append(
-                        '<div class="error">' + responseData.errors.secondNameEmpty + '</div>'
+                        '<div class="error">' + responseData.errors.errors.secondNameEmpty + '</div>'
                     )
                 }
-                if(responseData.errors.loginEmpty) {
+                if(responseData.errors.errors.loginEmpty) {
                     $("#login-from-register-form").append(
-                        '<div class="error">' + responseData.errors.loginEmpty + '</div>'
+                        '<div class="error">' + responseData.errors.errors.loginEmpty + '</div>'
                     )
                 }
-                if(responseData.errors.passwordEmpty) {
+                if(responseData.errors.errors.passwordEmpty) {
                     $("#password-from-register-form").append(
-                        '<div class="error">' + responseData.errors.passwordEmpty + '</div>'
+                        '<div class="error">' + responseData.errors.errors.passwordEmpty + '</div>'
                     )
                 }
-                if(responseData.errors.passwordRegexp) {
+                if(responseData.errors.errors.passwordRegexp) {
                     $("#password-from-register-form").append(
-                        '<div class="error">' + responseData.errors.passwordRegexp + '</div>'
+                        '<div class="error">' + responseData.errors.errors.passwordRegexp + '</div>'
                     )
                 }
             } else {
-                $("#register").append(
+                $("#registration").append(
                     '<div class="success">' + "Вы успешно зарегистрированы!" + '</div>'
                 )
             }

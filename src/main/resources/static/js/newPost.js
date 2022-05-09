@@ -22,6 +22,7 @@ $(document).ready(function ()
                $("#post").append(
                    '<div class="post-content">' +
                    '<div class="post-container">' +
+                   '<img src="/images/img.png" alt="post-image" class="img-responsive post-image" />' +
                    '<img src="/images/bogdanov-s-telefonom.jpg" alt="user" class="profile-photo-md pull-left" />' +
                    '<div class="post-detail">' +
                    '<div class="user-info">' +
@@ -29,8 +30,7 @@ $(document).ready(function ()
                    '<p class="text-muted">' + responseData.date + '</p>' +
                    '</div>' +
                    '<div class="reaction">' +
-                   '<a class="btn text-green"><i class="icon ion-thumbsup"></i> 13</a>' +
-                   '<a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>' +
+                   '<a class="btn text-green"><i class="icon ion-thumbsup"></i> 0</a>' +
                    '</div>' +
                    '<div class="line-divider"></div>' +
                    '<div class="post-text">' +
@@ -40,6 +40,7 @@ $(document).ready(function ()
                    '</div>' +
                    '</div>' +
                    '</div>'
+
                )
            }
        event.preventDefault();

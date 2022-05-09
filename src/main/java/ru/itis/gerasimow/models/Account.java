@@ -28,6 +28,8 @@ public class Account {
 
 	private String password;
 
+	private String code;
+
 	@OneToMany(mappedBy = "account")
 	@ToString.Exclude
 	private Set<Post> posts;

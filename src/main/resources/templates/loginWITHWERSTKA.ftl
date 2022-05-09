@@ -20,6 +20,16 @@
 
     <!--Favicon-->
     <link rel="shortcut icon" type="image/png" href="/images/fav.png"/>
+
+    <script
+            type="text/javascript"
+            src="https://vk.com/js/api/openapi.js?168"
+            charset="windows-1251"
+    ></script>
+    <script type="text/javascript">
+        VK.init({ apiId: 8162132 });
+    </script>
+
 </head>
 <body>
 
@@ -112,9 +122,6 @@
                         <div class="tab-pane" id="login">
                             <#if error??>
                                 <h3>Неправильный логин или пароль</h3>
-                                <script>
-                                    window.onload = location.href.anchor('#login')
-                                </script>
                             <#else>
                                 <h3>Авторизация</h3>
                             </#if>
@@ -136,6 +143,10 @@
                                                placeholder="Пароль"/>
                                     </div>
                                 </div>
+                                <div id="vk_auth"></div>
+                                <script type="text/javascript">
+                                    VK.Widgets.Auth("vk_auth", {authUrl: "/login/vk"});
+                                </script>
                                 <input type="submit" class="btn btn-primary" value="Войти!">
                                 <input type="checkbox" name="remember-me-checkbox" id="remember-me-checkbox"><label
                                         for="remember-me-checkbox"> Запомнить меня?</label>

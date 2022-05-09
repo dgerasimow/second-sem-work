@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 	Optional<Account> findByEmailLike(String email);
+	Optional<Account> findByCode(String code);
 }

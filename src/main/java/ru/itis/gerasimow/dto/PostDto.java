@@ -41,8 +41,8 @@ public class PostDto {
 				.date(post.getDate())
 				.firstName(post.getAccount().getFirstName())
 				.lastName(post.getAccount().getLastName())
-				.comments(CommentDto.from(post.getComments().stream().toList()))
-				.likes(LikeDto.from(post.getLikes().stream().toList()))
+				.comments(CommentDto.from(post.getComments().stream().collect(Collectors.toList())))
+				.likes(LikeDto.from(post.getLikes().stream().collect(Collectors.toList())))
 				.build();
 	}
 

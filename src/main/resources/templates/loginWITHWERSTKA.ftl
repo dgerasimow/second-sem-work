@@ -27,7 +27,7 @@
             charset="windows-1251"
     ></script>
     <script type="text/javascript">
-        VK.init({ apiId: 8162132 });
+        VK.init({ apiId: 8162746 });
     </script>
 
 </head>

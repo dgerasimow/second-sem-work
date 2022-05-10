@@ -10,11 +10,9 @@ $(document).ready(function ()
             password: $("#register-password").val()
         }
 
-        //$.contentType("application/json");
-
         $.post(
             "/registration/validation",
-            JSON.stringify(registerData),
+            registerData,
             func,
             "json"
         );
@@ -48,12 +46,12 @@ $(document).ready(function ()
                         '<div class="error">' + responseData.errors.errors.passwordRegexp + '</div>'
                     )
                 }
+                event.preventDefault();
             } else {
                 $("#registration").append(
                     '<div class="success">' + "Вы успешно зарегистрированы!" + '</div>'
                 )
             }
         }
-        event.preventDefault();
     });
 });

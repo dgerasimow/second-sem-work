@@ -52,12 +52,10 @@
                         <li class="dropdown"><a href="/logout">Выйти</a></li>
                     </#if>
                 </ul>
-                <form class="navbar-form navbar-right hidden-sm">
-                    <div class="form-group">
-                        <i class="icon ion-android-search"></i>
-                        <input type="text" class="form-control" placeholder="Поиск людей">
-                    </div>
-                </form>
+                <#--                <form class="navbar-form navbar-right hidden-sm">-->
+                <#--                    <div class="form-group"-->
+                <#--                    </div>-->
+                <#--                </form>-->
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container -->
     </nav>

@@ -19,7 +19,7 @@
             request.send(JSON.stringify(body))
 
             document.getElementById("sub box").innerHTML = "<input type='hidden' name='userId' id='userId' value=${profileUser.id}>" +
-            "<input type='hidden' name='currentUserId' id='currentUserId' value=${user.id}>" +
+                "<input type='hidden' name='currentUserId' id='currentUserId' value=${user.id}>" +
                 "<button type='submit' class='btn-primary'  onclick='unsubscribe(${user.id}, ${profileUser.id})'>" +
                 "отписаться</button>"
 
@@ -101,9 +101,9 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="profile-info">
-                            <img src="/images/bogdanov-s-telefonom.jpg" alt="" class="img-responsive profile-photo" />
+                            <img src="${profileUser.avatarUrl}" alt="" class="img-responsive profile-photo" />
                             <h3>${profileUser.firstName} ${profileUser.lastName}</h3>
-                            <p class="text-muted">Хуйлан че</p>
+                            <p class="text-muted">Пользователь</p>
                         </div>
                     </div>
                     <div class="col-md-9">
@@ -111,7 +111,7 @@
                             <#if userSubscribedToCurrentUser??>
                                 <li>Подписан</li>
                             <#else>
-                                    <li>Не подписан</li>
+                                <li>Не подписан</li>
                             </#if>
                         </ul>
                         <ul class="follow-me list-inline">
@@ -124,7 +124,7 @@
                                     <button type="submit" class="btn-primary"  onclick="unsubscribe(${user.id}, ${profileUser.id})">
                                         Отписаться</button>
                                 </li>
-                                <#else>
+                            <#else>
                                 <li id="sub box">
                                     <input type="hidden" name="userId" id="userId" value=${profileUser.id}>
                                     <input type="hidden" name="currentUserId" id="currentUserId" value=${user.id}>
@@ -146,33 +146,32 @@
 
                     <!-- Post Create Box
                     ================================================= -->
-<#--                    <div class="create-post">-->
-<#--                        <div class="row">-->
-<#--                            <form action="/posts" method="POST" id="create-post-form" name="newPost_form">-->
-<#--                                <div class="col-md-7 col-sm-7">-->
-<#--                                    <div class="form-group">-->
-<#--                                        <img src="/images/bogdanov-s-telefonom.jpg" alt="" class="profile-photo-md" />-->
-<#--                                        <input name="userId" id="userId" type="hidden" value="${user.id}">-->
-<#--                                        <textarea name="post-textarea" id="post-textarea" cols="30" rows="1" class="form-control" placeholder="Write what you wish" required form="create-post-form"></textarea>-->
-<#--                                    </div>-->
-<#--                                </div>-->
-<#--                                <div class="col-md-5 col-sm-5">-->
-<#--                                    <div class="tools">-->
-<#--                                        <input type="submit" class="btn btn-primary pull-right" id="create-post-button" form="create-post-form" value="Опубликовать"/>-->
-<#--                                    </div>-->
-<#--                                </div>-->
-<#--                            </form>-->
-<#--                        </div>-->
-<#--                    </div>-->
+                    <#--                    <div class="create-post">-->
+                    <#--                        <div class="row">-->
+                    <#--                            <form action="/posts" method="POST" id="create-post-form" name="newPost_form">-->
+                    <#--                                <div class="col-md-7 col-sm-7">-->
+                    <#--                                    <div class="form-group">-->
+                    <#--                                        <img src="/images/bogdanov-s-telefonom.jpg" alt="" class="profile-photo-md" />-->
+                    <#--                                        <input name="userId" id="userId" type="hidden" value="${user.id}">-->
+                    <#--                                        <textarea name="post-textarea" id="post-textarea" cols="30" rows="1" class="form-control" placeholder="Write what you wish" required form="create-post-form"></textarea>-->
+                    <#--                                    </div>-->
+                    <#--                                </div>-->
+                    <#--                                <div class="col-md-5 col-sm-5">-->
+                    <#--                                    <div class="tools">-->
+                    <#--                                        <input type="submit" class="btn btn-primary pull-right" id="create-post-button" form="create-post-form" value="Опубликовать"/>-->
+                    <#--                                    </div>-->
+                    <#--                                </div>-->
+                    <#--                            </form>-->
+                    <#--                        </div>-->
+                    <#--                    </div>-->
                     <!-- Post Create Box End-->
 
                     <div id="post"></div>
                     <#if posts??>
                         <#list posts as p>
                             <div class="post-content">
-                                <img src="/images/img.png" alt="post-image" class="img-responsive post-image" />
                                 <div class="post-container">
-                                    <img src="/images/bogdanov-s-telefonom.jpg" alt="user" class="profile-photo-md pull-left" />
+                                    <img src="${p.avatarUrl}" alt="user" class="profile-photo-md pull-left" />
                                     <div class="post-detail">
                                         <div class="user-info">
                                             <h5><a href="/profile/${p.userId}" class="profile-link">${p.firstName} ${p.lastName}</a> <span class="following">following</span></h5>
@@ -193,7 +192,7 @@
                                         <div class="line-divider"></div>
                                         <#list p.comments as comment>
                                             <div class="post-comment">
-                                                <img src="/images/bogdanov-s-telefonom.jpg" alt="" class="profile-photo-sm" />
+                                                <img src="${comment.avatarUrl}" alt="" class="profile-photo-sm" />
                                                 <p><a href="/profile/${comment.userId}" class="profile-link">${comment.userFirstName} </a>${comment.text}</p>
                                             </div>
                                             <div class="line-divider"></div>
@@ -201,7 +200,7 @@
                                         <div id="last-divider"></div>
                                         <form method="POST" id="add-new-comment">
                                             <div class="post-comment">
-                                                <img src="/images/bogdanov-s-telefonom.jpg" alt="" class="profile-photo-sm" />
+                                                <img src="${user.avatarUrl}" alt="" class="profile-photo-sm" />
                                                 <input type="hidden" id="post-id" value="${p.id}">
                                                 <input type="hidden" id="user-id" value="${user.id}">
                                                 <input type="text" id="comment-text" name="comment-text" class="form-control" placeholder="Post a comment">
